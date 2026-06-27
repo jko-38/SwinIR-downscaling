@@ -127,16 +127,6 @@ Open `Analysis/Analysis_visualization.ipynb` to reconstruct full temperature fie
 
 Architecture components: sinusoidal positional embedding for coordinates, a shallow feature extraction block, four Residual Swin Transformer Blocks (RSTB) with window / shifted-window attention, a Topography Encoder fused at both LR and HR stages, Dual Upsampling Blocks (bilinear + pixel-shuffle branches), and a final fusion block producing the temperature spatial-perturbation field.
 
-## Citation
-
-```bibtex
-@article{ko_swinir_downscaling,
-  title   = {SwinIR-based high-resolution downscaling of temperature over the Korean Peninsula},
-  author  = {Ko, Jiho and Jun, Sang-Yoon and Kug, Jong-Seong},
-  journal = {Geosciences},
-  note    = {in Prep}
-}
-```
 
 ## Contact
 
