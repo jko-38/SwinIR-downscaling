@@ -1,0 +1,72 @@
+# config.yaml
+
+# Default values
+wandb_project: KOPRI_SR_Temp(26.01~)
+input_vars: [t2m, u10, v10, sp]
+in_channels: 4         # input variance 개수
+static_vars: [elevation, slope, mask, latlon_LR, latlon_HR, lai]
+#static_vars: [elevation, slope, mask, lai]
+use_static: True
+#use_lai_lr: True
+use_ldaps_input: False   # ← true면 t2m을 LDAPS 저해상도 입력으로 사용
+use_gfs_input: False
+use_cfs_input: False
+
+
+version: v1   # version 학습 순서 
+res: 0.2
+k_fold: 0   #  0 ~ 5
+data_processing_clim: "residual_f"  # residual,  monthly,  smoothdoy , areamean
+data_paths:
+  base_path: "../Data/Dataset"
+  static_hr: "static_hr.pt"
+  mask: "LDAPS_landmask_data.pt"
+  elevation: "input_elevation_data.pt"
+  slope: "input_slope_data.pt"
+  lai: "input_lai_data.pt"
+  latlon_LR: "input_latlon_LR.pt"             # LR 위경도
+  latlon_HR: "LDAPS_latlon_HR.pt"         # HR 위경도
+
+  paleo_path: ../Data/Dataset/Paleo_KOPRI
+  future_path: ../Data/Dataset/SSP1_KOPRI
+input_shape:
+  0.2: [41,29]
+  0.5: [21,15]
+  1: [11,8]
+  2: [6,4]
+  3: [4,3]
+time:
+  start_date: "2013-01-01"
+  frequency: "D"
+ckpt: ""
+
+# 모델 설정
+gpu: 0
+seed: 42
+model: 'swinir'            # 'edsr', 'unet', 'srcnn', 'swinir', 'swinir_new'
+target_h: 731
+target_w: 430
+out_channels: 1 
+num_features: 64       # EDSR 전용
+num_blocks: 16         # EDSR 전용
+
+METRIC_EVERY_EPOCHS: 5  # Val 중간 계산하는 주기
+VIS_EVERY_EPOCHS: 10   # map 시각화 저장 주기
+METRIC_VAL_MAX_BATCHES: 10   # 검증에서 메트릭 계산할 최대 배치 수
+VIS_VAL_MAX_SAMPLES: 1   # 검증에서 시각화할 최대 샘플 수
+
+num_workers: 16  
+epochs: 100
+batch_size: 16
+patience: 10
+lr: 0.0002
+warmup_epochs: 10
+weight_decay: 0.0001
+optimizer: adam      # or 'sgd'
+scheduler: CosineAnnealingLR # StepLR, MultiStepLR, CosineAnnealingLR, ReduceLROnPlateau
+criterion: mae+grad+ssim        # mse, mae, +grad, +ssim, +grad+ssim
+ssim_lambda: 0.1  #  SSIM loss lamda ratio
+grad_lambda: 0.08  #  Gradient loss lamda ratio
+upsteps: 4        # swinir 전용  (2^n 배 업샘플링)
+upsample_mode: 'dual'  #  single(Pixelshuffle), dual(interpol + pixel)
+adv_type: "hinge"      # BCE or hinge

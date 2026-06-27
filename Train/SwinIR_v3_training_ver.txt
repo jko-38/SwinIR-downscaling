@@ -1,0 +1,40 @@
+# 각 SwinIR_v3 모델에 대해서 버전에 따른 변화
+
+Date : 2025.10.30
+
+v1:  (기본 baseline)
+    model : SwinIR_v3
+    loss : mae
+    input variable :  baseline (4개)
+    upsampling : single upsampling
+    (v1이 실행이 안되서 v1_1로 다시 똑같이해서 돌림)
+    
+v2:  Upsampling 방법 수정 (single -> dual)
+    model : SwinIR_v3
+    loss : mae
+    input variable :  baseline (4개)
+    upsampling : dual upsampling
+
+v3: Input variable 을 단일 온도 변수로만 사용  
+    model : SwinIR_v3
+    loss : mae
+    input variable :  only t2m
+    upsampling : single upsampling
+
+v4: 혼합 로스 사용 (mae ->  mae+grad+ssim)
+    model : SwinIR_v3
+    loss : mae+grad+ssim
+    input variable :  baseline (4개)
+    upsampling : single upsampling
+
+v5: 혼합 로스 사용 및 dual upsampling
+    model : SwinIR_v3
+    loss : mae+grad+ssim
+    input variable :  baseline (4개)
+    upsampling : dual Upsampling
+
+    v5_1: v5에서 grad loss 람다만 변경 (1.0 -> 0.08)
+        model : SwinIR_v3
+        loss : mae+grad+ssim
+        input variable :  baseline (4개)
+        upsampling : dual Upsampling
