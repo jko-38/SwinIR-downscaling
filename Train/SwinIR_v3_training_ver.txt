@@ -1,13 +1,10 @@
-# 각 SwinIR_v3 모델에 대해서 버전에 따른 변화
+# Several SwinIR version
 
-Date : 2025.10.30
-
-v1:  (기본 baseline)
+v1:  (baseline)
     model : SwinIR_v3
     loss : mae
     input variable :  baseline (4개)
     upsampling : single upsampling
-    (v1이 실행이 안되서 v1_1로 다시 똑같이해서 돌림)
     
 v2:  Upsampling 방법 수정 (single -> dual)
     model : SwinIR_v3
