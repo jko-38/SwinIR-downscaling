@@ -2,7 +2,7 @@
 
 This repository contains the code accompanying the manuscript:
 
-> Ko, J., Jun, S.-Y., & Kug, J.-S. SwinIR-based high-resolution downscaling of temperature over the Korean Peninsula. *Geosciences* (In Revisiom).
+> Ko, J., Jun, S.-Y., & Kug, J.-S. SwinIR-based high-resolution downscaling of temperature over the Korean Peninsula. *Geosciences* (In Revision).
 
 A SwinIR-based deep-learning super-resolution (SR) framework that downscales low-resolution ERA5 reanalysis fields (0.25°) to the 1.5-km daily-mean 1.5-m temperature field of the Korea Meteorological Administration's Local Data Assimilation and Prediction System (LDAPS). The model fuses static topographic information through a dedicated Topography Encoder using a dual-fusion (LR-stage + HR-stage) structure.
 
